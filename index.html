@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Angka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        input {
+            padding: 5px;
+            width: 80px;
+        }
+        button {
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Tebak Angka (1-100)</h2>
+        <p>Masukkan tebakanmu di bawah ini:</p>
+        <input type="number" id="guess" min="1" max="100">
+        <button onclick="checkGuess()">Tebak</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            let userGuess = parseInt(document.getElementById('guess').value);
+            let message = document.getElementById('message');
+            attempts++;
+
+            if (userGuess === randomNumber) {
+                message.innerHTML = `Selamat! Kamu menebak angka ${randomNumber} dengan ${attempts} percobaan.`;
+                message.style.color = 'green';
+            } else if (userGuess < randomNumber) {
+                message.innerHTML = 'Terlalu rendah, coba lagi!';
+                message.style.color = 'red';
+            } else {
+                message.innerHTML = 'Terlalu tinggi, coba lagi!';
+                message.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
